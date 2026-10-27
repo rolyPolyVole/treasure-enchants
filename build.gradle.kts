@@ -3,7 +3,10 @@ plugins {
     id("net.fabricmc.fabric-loom") version "1.19-SNAPSHOT"
 }
 
-version = project.property("mod_version") as String
+version = providers.exec {
+    commandLine("git", "describe", "--tags", "--always", "--dirty")
+    isIgnoreExitValue = true
+}.standardOutput.asText.get().trim().ifEmpty { "unknown" } + "+${project.property("minecraft_version")}"
 
 base {
     archivesName.set(project.property("archives_base_name") as String)
