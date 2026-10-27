@@ -11,7 +11,7 @@
     "environment": "*",
     "entrypoints": {
         "main": [
-            "dev.rolypolyvole.treasureenchants.TreasureEnchants"
+            "dev.rolypolyvole.treasureenchants.TreasureEnchantsMod"
         ]
     },
     "depends": {

@@ -7,7 +7,7 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-class TreasureEnchants : ModInitializer {
+class TreasureEnchantsMod : ModInitializer {
 
     override fun onInitialize() {
         ModConfig.load()
