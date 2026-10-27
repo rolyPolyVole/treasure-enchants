@@ -1,0 +1,23 @@
+{
+    "schemaVersion": 1,
+    "id": "treasure-enchants",
+    "version": "${version}",
+    "name": "Treasure Enchants",
+    "description": "Adds unobtainable enchants to structure loot and mob drops",
+    "authors": ["rolyPolyVole"],
+    "contact": {},
+    "license": "GPL-3.0",
+    "icon": "icon.png",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "dev.rolypolyvole.treasureenchants.TreasureEnchants"
+        ]
+    },
+    "depends": {
+        "fabricloader": ">=${loader_version}",
+        "fabric-language-kotlin": ">=${kotlin_loader_version}",
+        "fabric-api": "*",
+        "minecraft": "${minecraft_version}"
+    }
+}
