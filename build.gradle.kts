@@ -23,23 +23,6 @@ java {
     withSourcesJar()
 }
 
-loom {
-    splitEnvironmentSourceSets()
-
-    mods {
-        register("treasure_enchants") {
-            sourceSet("main")
-            sourceSet("client")
-        }
-    }
-}
-
-fabricApi {
-    configureDataGeneration {
-        client = true
-    }
-}
-
 repositories {
     // Add repositories to retrieve artifacts from in here.
     // You should only use this when depending on other mods because
@@ -61,6 +44,7 @@ tasks.processResources {
     inputs.property("version", project.version)
     inputs.property("minecraft_version", project.property("minecraft_version"))
     inputs.property("loader_version", project.property("loader_version"))
+    inputs.property("kotlin_loader_version", project.property("kotlin_loader_version"))
     filteringCharset = "UTF-8"
 
     filesMatching("fabric.mod.json") {
@@ -87,7 +71,7 @@ tasks.withType<KotlinCompile>().configureEach {
 }
 
 tasks.jar {
-    from("LICENSE") {
+    from("LICENSE.txt") {
         rename { "${it}_${project.base.archivesName.get()}" }
     }
 }
