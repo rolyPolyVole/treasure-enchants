@@ -15,7 +15,7 @@ import kotlin.io.path.readText
 
 object ModConfig {
     private val gson = GsonBuilder()
-        .setFormattingStyle(FormattingStyle.PRETTY.withIndent(" ".repeat(8)))
+        .setFormattingStyle(FormattingStyle.PRETTY.withIndent(" ".repeat(4)))
         .serializeNulls()
         .create()
 
@@ -53,9 +53,10 @@ object ModConfig {
         return gson.fromJson(resourcePath.readText(), TreasureEnchantsConfig::class.java)
     }
 
+    @Suppress("UselessCallOnNotNull")
     private fun buildLootMap(): Map<ResourceKey<LootTable>, List<EnchantmentLootData>> {
         return config.enchants.orEmpty().asSequence()
-            .filter { it.chance >= 0 && it.level >= 1 }
+            .filter { validateNumbers(it).isEmpty() }
             .mapNotNull { data -> data.lootResourceKey()?.let { it to data } }
             .groupBy({ it.first }, { it.second })
     }
@@ -68,23 +69,20 @@ object ModConfig {
             val problems = mutableListOf<String>()
 
             with(data) {
-                if (chance <= 0) {
-                    problems += "Chance has to be bigger than 0%"
-                }
-
-                if (level < 1) {
-                    problems += "Enchantment level cannot be less than 1"
-                }
+                problems += validateNumbers(data)
 
                 val lootKey = lootResourceKey()
-                val enchantKey = enchantResourceKey()
 
                 if (lootKey == null || lootTables.get(lootKey).isEmpty) {
                     problems += "Invalid loot table resource location detected"
                 }
 
-                if (enchantKey == null || enchantments.get(enchantKey).isEmpty) {
-                    problems += "Invalid enchantment resource location detected"
+                data.enchantments.forEachIndexed { i, enchant ->
+                    val enchantKey = enchant.enchantResourceKey()
+
+                    if (enchantKey == null || enchantments.get(enchantKey).isEmpty) {
+                        problems += "Enchant #${i + 1}: Invalid enchantment resource location detected"
+                    }
                 }
             }
 
@@ -92,5 +90,18 @@ object ModConfig {
                 TreasureEnchantsMod.LOGGER.error("Invalid configuration detected at index $index:\n${problems.joinToString("\n")}\n")
             }
         }
+    }
+
+    private fun validateNumbers(data: EnchantmentLootData): List<String> {
+        val problems = mutableListOf<String>()
+
+        if (data.chance <= 0) problems += "Chance has to be bigger than 0%"
+        if (data.enchantments.isEmpty()) problems += "No configured enchantments found"
+
+        data.enchantments.forEachIndexed { i, enchant ->
+            if (enchant.level < 1) problems += "Enchant #${i + 1}: Level cannot be less than 1"
+        }
+
+        return problems
     }
 }
