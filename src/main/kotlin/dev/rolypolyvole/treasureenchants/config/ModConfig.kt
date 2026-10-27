@@ -13,6 +13,7 @@ import java.nio.file.Files
 import kotlin.io.path.exists
 import kotlin.io.path.readText
 
+@Suppress("UselessCallOnNotNull")
 object ModConfig {
     private val gson = GsonBuilder()
         .setFormattingStyle(FormattingStyle.PRETTY.withIndent(" ".repeat(4)))
@@ -53,7 +54,6 @@ object ModConfig {
         return gson.fromJson(resourcePath.readText(), TreasureEnchantsConfig::class.java)
     }
 
-    @Suppress("UselessCallOnNotNull")
     private fun buildLootMap(): Map<ResourceKey<LootTable>, List<EnchantmentLootData>> {
         return config.enchants.orEmpty().asSequence()
             .filter { validateNumbers(it).isEmpty() }
@@ -63,9 +63,9 @@ object ModConfig {
 
     fun validateConfig(server: MinecraftServer) {
         val lootTables = server.reloadableRegistries().lookup().lookupOrThrow(Registries.LOOT_TABLE)
-        val enchantments = server.registryAccess().lookupOrThrow(Registries.ENCHANTMENT)
+        val enchantRegistry = server.registryAccess().lookupOrThrow(Registries.ENCHANTMENT)
 
-        for ((index, data) in config.enchants.withIndex()) {
+        for ((index, data) in config.enchants.orEmpty().withIndex()) {
             val problems = mutableListOf<String>()
 
             with(data) {
@@ -77,10 +77,10 @@ object ModConfig {
                     problems += "Invalid loot table resource location detected"
                 }
 
-                data.enchantments.forEachIndexed { i, enchant ->
+                data.enchantments.orEmpty().forEachIndexed { i, enchant ->
                     val enchantKey = enchant.enchantResourceKey()
 
-                    if (enchantKey == null || enchantments.get(enchantKey).isEmpty) {
+                    if (enchantKey == null || enchantRegistry.get(enchantKey).isEmpty) {
                         problems += "Enchant #${i + 1}: Invalid enchantment resource location detected"
                     }
                 }
@@ -96,9 +96,9 @@ object ModConfig {
         val problems = mutableListOf<String>()
 
         if (data.chance <= 0) problems += "Chance has to be bigger than 0%"
-        if (data.enchantments.isEmpty()) problems += "No configured enchantments found"
+        if (data.enchantments.isNullOrEmpty()) problems += "No configured enchantments found"
 
-        data.enchantments.forEachIndexed { i, enchant ->
+        data.enchantments.orEmpty().forEachIndexed { i, enchant ->
             if (enchant.level < 1) problems += "Enchant #${i + 1}: Level cannot be less than 1"
         }
 

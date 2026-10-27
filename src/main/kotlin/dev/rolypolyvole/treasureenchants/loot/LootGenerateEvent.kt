@@ -15,11 +15,14 @@ object LootGenerateEvent {
     fun register() {
         LootTableEvents.MODIFY.register { key, builder, _, provider ->
             val entries = ModConfig.lootMap[key] ?: return@register
-            val enchants = provider.lookupOrThrow(Registries.ENCHANTMENT)
+            val registry = provider.lookupOrThrow(Registries.ENCHANTMENT)
 
             entries.forEach {
-                val enchantKey = it.enchantResourceKey() ?: return@forEach
-                val enchantment = enchants.get(enchantKey).orElse(null) ?: return@forEach
+                val enchantments = it.enchantments.map { data ->
+                    val resourceKey = data.enchantResourceKey() ?: return@forEach
+                    val enchant = registry.get(resourceKey).orElse(null) ?: return@forEach
+                    enchant to data.level
+                }.toMap()
 
                 val weight = (it.chance.coerceAtMost(100.0) * 10).roundToInt()
                 val quality = (it.luckFactor * 10).roundToInt()
@@ -30,9 +33,9 @@ object LootGenerateEvent {
                         .add(LootItem.lootTableItem(Items.ENCHANTED_BOOK)
                             .setWeight(weight)
                             .setQuality(quality)
-                            .apply(SetEnchantmentsFunction.Builder()
-                                .withEnchantment(enchantment, ContextIntProviders.exactly(it.level))
-                            )
+                            .apply(SetEnchantmentsFunction.Builder().apply {
+                                enchantments.forEach { (enchant, level) -> withEnchantment(enchant, ContextIntProviders.exactly(level)) }
+                            })
                         )
                         .add(EmptyLootItem.emptyItem().setWeight(1000 - weight))
                 )
