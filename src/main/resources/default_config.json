@@ -1,3 +1,51 @@
 {
-        "enchants": []
+    "enchants": [
+        { "lootKey": "minecraft:chests/end_city_treasure", "chance": 2.5, "luckFactor": 0.5, "enchantments": [{ "enchantKey": "minecraft:sharpness", "level": 6 }] },
+        { "lootKey": "minecraft:chests/bastion_treasure", "chance": 1.0, "luckFactor": 0.1, "enchantments": [{ "enchantKey": "minecraft:sharpness", "level": 6 }] },
+
+        { "lootKey": "minecraft:chests/jungle_temple", "chance": 15.0, "luckFactor": 0.5, "enchantments": [{ "enchantKey": "minecraft:smite", "level": 6 }] },
+        { "lootKey": "minecraft:chests/desert_pyramid", "chance": 3.0, "luckFactor": 0.5, "enchantments": [{ "enchantKey": "minecraft:smite", "level": 6 }] },
+
+        { "lootKey": "minecraft:chests/simple_dungeon", "chance": 2.5, "luckFactor": 0.5, "enchantments": [{ "enchantKey": "minecraft:unbreaking", "level": 4 }] },
+
+        { "lootKey": "minecraft:chests/desert_pyramid", "chance": 1.0, "luckFactor": 0.1, "enchantments": [{ "enchantKey": "minecraft:thorns", "level": 4 }] },
+
+        { "lootKey": "minecraft:chests/ancient_city", "chance": 1.5, "luckFactor": 0.5, "enchantments": [{ "enchantKey": "minecraft:protection", "level": 5 }] },
+        { "lootKey": "minecraft:chests/stronghold_library", "chance": 5.0, "luckFactor": 0.5, "enchantments": [{ "enchantKey": "minecraft:protection", "level": 5 }] },
+
+        { "lootKey": "minecraft:chests/nether_bridge", "chance": 1.5, "luckFactor": 0.5, "enchantments": [{ "enchantKey": "minecraft:fire_protection", "level": 5 }] },
+        { "lootKey": "minecraft:chests/ruined_portal", "chance": 0.5, "luckFactor": 0.1, "enchantments": [{ "enchantKey": "minecraft:fire_protection", "level": 5 }] },
+
+        { "lootKey": "minecraft:chests/end_city_treasure", "chance": 2.5, "luckFactor": 0.5, "enchantments": [{ "enchantKey": "minecraft:feather_falling", "level": 5 }] },
+
+        { "lootKey": "minecraft:chests/abandoned_mineshaft", "chance": 0.5, "luckFactor": 0.1, "enchantments": [{ "enchantKey": "minecraft:efficiency", "level": 6 }] },
+        { "lootKey": "minecraft:chests/stronghold_library", "chance": 5.0, "luckFactor": 0.5, "enchantments": [{ "enchantKey": "minecraft:efficiency", "level": 6 }] },
+
+        { "lootKey": "minecraft:chests/woodland_mansion", "chance": 5.0, "luckFactor": 0.5, "enchantments": [{ "enchantKey": "minecraft:power", "level": 6 }] },
+
+        { "lootKey": "minecraft:chests/end_city_treasure", "chance": 1.0, "luckFactor": 0.1, "enchantments": [{ "enchantKey": "minecraft:fortune", "level": 4 }] },
+
+        { "lootKey": "minecraft:chests/buried_treasure", "chance": 1.0, "luckFactor": 0.1, "enchantments": [{ "enchantKey": "minecraft:looting", "level": 4 }] },
+
+        { "lootKey": "minecraft:gameplay/fishing/treasure", "chance": 2.0, "luckFactor": 0.5, "enchantments": [{ "enchantKey": "minecraft:luck_of_the_sea", "level": 6 }] },
+        { "lootKey": "minecraft:chests/underwater_ruin_big", "chance": 0.1, "luckFactor": 0.1, "enchantments": [{ "enchantKey": "minecraft:luck_of_the_sea", "level": 6 }] },
+        { "lootKey": "minecraft:chests/underwater_ruin_small", "chance": 0.1, "luckFactor": 0.1, "enchantments": [{ "enchantKey": "minecraft:luck_of_the_sea", "level": 6 }] },
+
+        { "lootKey": "minecraft:gameplay/fishing/treasure", "chance": 2.0, "luckFactor": 0.5, "enchantments": [{ "enchantKey": "minecraft:lure", "level": 4 }] },
+        { "lootKey": "minecraft:chests/underwater_ruin_big", "chance": 0.1, "luckFactor": 0.1, "enchantments": [{ "enchantKey": "minecraft:lure", "level": 4 }] },
+        { "lootKey": "minecraft:chests/underwater_ruin_small", "chance": 0.1, "luckFactor": 0.1, "enchantments": [{ "enchantKey": "minecraft:lure", "level": 4 }] },
+
+        { "lootKey": "minecraft:chests/pillager_outpost", "chance": 2.5, "luckFactor": 0.5, "enchantments": [{ "enchantKey": "minecraft:quick_charge", "level": 4 }] },
+
+        { "lootKey": "minecraft:entities/elder_guardian", "chance": 3.0, "luckFactor": 0.5, "enchantments": [{ "enchantKey": "minecraft:impaling", "level": 6 }] },
+
+        { "lootKey": "minecraft:entities/elder_guardian", "chance": 1.0, "luckFactor": 0.1, "enchantments": [{ "enchantKey": "minecraft:riptide", "level": 4 }] },
+
+        { "lootKey": "minecraft:entities/warden", "chance": 5.0, "luckFactor": 0.5, "enchantments": [{ "enchantKey": "minecraft:swift_sneak", "level": 4 }] },
+
+        { "lootKey": "minecraft:chests/bastion_other", "chance": 0.5, "luckFactor": 0.1, "enchantments": [{ "enchantKey": "minecraft:soul_speed", "level": 4 }] },
+
+        { "lootKey": "minecraft:chests/igloo_chest", "chance": 1.0, "luckFactor": 0.1, "enchantments": [{ "enchantKey": "minecraft:frost_walker", "level": 3 }] },
+        { "lootKey": "minecraft:chests/ancient_city_ice_box", "chance": 1.0, "luckFactor": 0.1, "enchantments": [{ "enchantKey": "minecraft:frost_walker", "level": 3 }] }
+    ]
 }
