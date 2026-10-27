@@ -4,7 +4,6 @@ import dev.rolypolyvole.treasureenchants.config.ModConfig
 import dev.rolypolyvole.treasureenchants.loot.LootGenerateEvent
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents
-import net.minecraft.resources.Identifier
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -25,9 +24,5 @@ class TreasureEnchants : ModInitializer {
     companion object {
         const val MOD_ID = "treasure-enchants"
         val LOGGER: Logger = LoggerFactory.getLogger(MOD_ID)
-
-        fun id(path: String): Identifier {
-            return Identifier.fromNamespaceAndPath(MOD_ID, path)
-        }
     }
 }
