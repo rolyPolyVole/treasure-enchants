@@ -12,7 +12,6 @@ class TreasureEnchants : ModInitializer {
 
     override fun onInitialize() {
         ModConfig.load()
-        ServerLifecycleEvents.SERVER_STARTING.register { ModConfig.load() }
         ServerLifecycleEvents.START_DATA_PACK_RELOAD.register { _, _ -> ModConfig.load() }
 
         ServerLifecycleEvents.SERVER_STARTED.register { ModConfig.validateConfig(it) }
