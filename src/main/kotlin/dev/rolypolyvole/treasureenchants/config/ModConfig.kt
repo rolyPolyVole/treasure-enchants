@@ -3,7 +3,7 @@ package dev.rolypolyvole.treasureenchants.config
 import com.google.gson.FormattingStyle
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParseException
-import dev.rolypolyvole.treasureenchants.TreasureEnchants
+import dev.rolypolyvole.treasureenchants.TreasureEnchantsMod
 import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.core.registries.Registries
 import net.minecraft.resources.ResourceKey
@@ -21,16 +21,16 @@ object ModConfig {
 
     private val path = FabricLoader.getInstance()
         .configDir
-        .resolve("${TreasureEnchants.MOD_ID}.json")
+        .resolve("${TreasureEnchantsMod.MOD_ID}.json")
 
     private val resourcePath = FabricLoader.getInstance()
-        .getModContainer(TreasureEnchants.MOD_ID)
+        .getModContainer(TreasureEnchantsMod.MOD_ID)
         .flatMap { it.findPath("default_config.json") }
         .orElseThrow()
 
     var config = defaultConfig()
         private set
-    var lootMap = getLootMap()
+    var lootMap = buildLootMap()
         private set
 
     fun load() {
@@ -42,18 +42,18 @@ object ModConfig {
                 defaultConfig()
             }
         } catch (e: JsonParseException) {
-            TreasureEnchants.LOGGER.error("Failed to read config {}, falling back to default config", path, e)
+            TreasureEnchantsMod.LOGGER.error("Failed to read config {}, falling back to default config", path, e)
             return
         }
 
-        lootMap = getLootMap()
+        lootMap = buildLootMap()
     }
 
     private fun defaultConfig(): TreasureEnchantsConfig {
         return gson.fromJson(resourcePath.readText(), TreasureEnchantsConfig::class.java)
     }
 
-    private fun getLootMap(): Map<ResourceKey<LootTable>, List<EnchantmentLootData>> {
+    private fun buildLootMap(): Map<ResourceKey<LootTable>, List<EnchantmentLootData>> {
         return config.enchants.orEmpty().asSequence()
             .filter { it.chance >= 0 && it.level >= 1 }
             .mapNotNull { data -> data.lootResourceKey()?.let { it to data } }
@@ -89,7 +89,7 @@ object ModConfig {
             }
 
             if (problems.isNotEmpty()) {
-                TreasureEnchants.LOGGER.error("Invalid configuration detected at index $index:\n${problems.joinToString("\n")}\n")
+                TreasureEnchantsMod.LOGGER.error("Invalid configuration detected at index $index:\n${problems.joinToString("\n")}\n")
             }
         }
     }
