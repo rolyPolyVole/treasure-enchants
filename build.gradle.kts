@@ -27,7 +27,7 @@ loom {
     splitEnvironmentSourceSets()
 
     mods {
-        register("treasure-enchants") {
+        register("treasure_enchants") {
             sourceSet("main")
             sourceSet("client")
         }

@@ -22,7 +22,7 @@ class TreasureEnchants : ModInitializer {
     }
 
     companion object {
-        const val MOD_ID = "treasure-enchants"
+        const val MOD_ID = "treasure_enchants"
         val LOGGER: Logger = LoggerFactory.getLogger(MOD_ID)
     }
 }

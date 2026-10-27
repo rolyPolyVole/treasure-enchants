@@ -1,6 +1,6 @@
 {
     "schemaVersion": 1,
-    "id": "treasure-enchants",
+    "id": "treasure_enchants",
     "version": "${version}",
     "name": "Treasure Enchants",
     "description": "Adds unobtainable enchants to structure loot and mob drops",
