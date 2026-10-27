@@ -7,6 +7,7 @@ import net.minecraft.world.item.enchantment.Enchantment
 import net.minecraft.world.level.storage.loot.LootTable
 
 data class TreasureEnchantsConfig(
+    val anvilCostLimit: Int = 60,
     val enchants: List<EnchantmentLootData> = listOf()
 )
 

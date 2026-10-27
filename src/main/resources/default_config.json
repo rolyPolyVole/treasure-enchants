@@ -1,5 +1,6 @@
 {
     "comments": {
+        "anvilCostLimit": "Anvil uses costing this many levels or more are Too Expensive in survival (vanilla is 40)",
         "lootKey": "The resource location of the loot table (minecraft: namespace is optional)",
         "chance": "Percentage chance of the book appearing, can be a decimal, and must be greater than 0",
         "luckFactor": "Increases chance by luckFactor * luck, where luck is the player's luck level + their Luck of the Sea enchant",
@@ -15,6 +16,7 @@
         ],
         "other": "For custom loot tables or enchantments, the datapack or mod namespace must be present, e.g. cool-mod:dragon_slayer"
     },
+    "anvilCostLimit": 40,
     "enchants": [
         {
             "lootKey": "chests/simple_dungeon",
