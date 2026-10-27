@@ -4,7 +4,9 @@
     "package": "dev.rolypolyvole.treasureenchants.mixin",
     "compatibilityLevel": "JAVA_25",
     "mixins": [
-        "AnvilMenuMixin"
+        "AnvilMenuMixin",
+        "BrushableBlockEntityMixin",
+        "LootTableBuilderAccessor"
     ],
     "injectors": {
         "defaultRequire": 1
