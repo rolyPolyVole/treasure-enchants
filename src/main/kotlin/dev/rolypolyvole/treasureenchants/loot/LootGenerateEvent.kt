@@ -43,6 +43,7 @@ object LootGenerateEvent {
 
                 val accessor = builder as LootTableBuilderAccessor
 
+                // For archaeology loot (brushing gravel), move the pool into index 0, because it only takes the first item
                 if (accessor.paramSet == LootContextParamSets.ARCHAEOLOGY) {
                     accessor.pools = ImmutableList.builder<LootPool>().add(pool.build()).addAll(accessor.pools.build())
                 } else {
